@@ -28,3 +28,4 @@ class videos(models.Model):
     duracion = models.CharField(max_length=100)
     url = models.URLField()
     autor = models.CharField(max_length=100)
+    clasificacion = models.CharField(max_length=100)
