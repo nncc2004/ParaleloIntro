@@ -55,7 +55,7 @@ ROOT_URLCONF = 'Paralelo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['Paralelo/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
