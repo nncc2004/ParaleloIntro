@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
 from .forms import RegistroDeusuario
+from django.contrib.auth.models import User
+
 # Create your views here.
 
 def registro(request):
@@ -19,8 +21,8 @@ def registro(request):
     return render(request, "registro.html", context)
 
 def principal(request):
-
-    return render(request, "principal.html")
+    usuario = request.user
+    return render(request, "principal.html", {'usuario': usuario})
 
 def nosotros(request):
 

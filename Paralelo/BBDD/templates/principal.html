@@ -4,5 +4,17 @@
 
 <body>
     <p>Pagina principal</p>
+    {%if request.user.is_authenticated%}
+    <div>
+        <p>Tus datos:</p>
+        <ul>
+            <li>Usuario: {{usuario.username}}</li>
+            <li>Nombre: {{usuario.first_name}}</li>
+            <li>Apellido: {{usuario.last_name}}</li>
+        </ul>
+    </div>
+    {%else%}
+    <h1><a href="{% url 'login'%}">Inicia sesión</a> o <a href="{% url 'registro'%}">regístrate</a> para continuar</h1>
+    {%endif%}
 </body>
 {% endblock %}
