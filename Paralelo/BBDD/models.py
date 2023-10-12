@@ -1,16 +1,6 @@
 from django.db import models
 
 # Create your models here.
-class usuarios(models.Model):
-    UserId = models.IntegerField(verbose_name= "ID")
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
-    correo = models.EmailField()
-    password = models.CharField(max_length=100)
-    rol = models.BooleanField()
-    def __str__(self):
-        return "ID: %s. Nombre: %s. Apellido: %s. Correo: %s. Contraseña: %s. Rol: %s" %(self.UserId, self.nombre, self.apellido, self.correo, self.password, self.rol)
-
 class curso_usuario(models.Model):
     UserCourseId = models.IntegerField(verbose_name= "ID")
     id_curso = models.IntegerField()

@@ -1,10 +1,6 @@
 from django.contrib import admin
-from BBDD.models import usuarios, lista_reproduccion, curso_usuario, cursos, videos
+from BBDD.models import lista_reproduccion, curso_usuario, cursos, videos
 # Register your models here.
-class UsuariosAdmin(admin.ModelAdmin):
-    list_display = ("UserId", "nombre", "apellido", "correo", "password", "rol")
-    search_fields = ("UserId", "nombre", "apellido", "correo", "password", "rol")
-    list_filter = ("rol",)
 
 class CursoUsuarioAdmin(admin.ModelAdmin):
     list_display = ("UserCourseId", "id_curso", "id_usuario", "progreso")
@@ -28,7 +24,7 @@ class VideoAdmin(admin.ModelAdmin):
 
 
     
-admin.site.register(usuarios, UsuariosAdmin)
+
 admin.site.register(curso_usuario, CursoUsuarioAdmin)
 admin.site.register(cursos, CursosAdmin)
 admin.site.register(lista_reproduccion,listaAdmin)
