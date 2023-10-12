@@ -20,7 +20,7 @@ from Paralelo.views import principal, nosotros
 from BBDD.views import prueba
 urlpatterns = [
     path('admin/', admin.site.urls, name = "admin"),
-    path('principal/', principal, name  = "principal"),
+    path('', principal, name  = "principal"),
     path('nosotros/', nosotros, name = "nosotros"),
     path('prueba/', prueba, name = "prueba"),
 ]
