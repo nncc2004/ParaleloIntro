@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<body>
+  <header>
+    <div class="menu">
+      <!--<img src="logo.png" alt="">-->
+      <nav>
+          <ul>
+            <li><a  href="{% url 'principal'%}">Principal</a></li>
+            <li><a href="{% url 'nosotros'%}">Nosotros</a></li>
+            {%if request.user.is_authenticated%}
+            <li><a href="{% url 'logout'%}">Cerrar Sesión</a></li>
+            {%else%}
+            <li><a href="{% url 'login'%}">Iniciar Sesión</a></li>
+            <li><a href="{% url 'registro'%}">Registro</a></li>
+            {%endif%}
+            <li><a href="/admin/">Admin</a></li>
+          </ul>
+      </nav>
+    </div>
+  </header>
+  {% if messages %}
+    {% for message in messages%}
+      <div class="notification message.tags">
+        {{message}}
+      </div>
+    {%endfor%}
+  {%endif%}
+  {% block content %}
+
+  {% endblock content %}
+
+</body>
+</html>
