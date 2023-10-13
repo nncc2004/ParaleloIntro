@@ -2,15 +2,16 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
 from .forms import RegistroDeusuario
-from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 # Create your views here.
 
 def registro(request):
     if request.method == 'POST':
         form = RegistroDeusuario(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            login(request, user)
             username = form.cleaned_data['username']
             messages.success(request, f"Usuario {username} ha sido creado exitosamente")
             return redirect('principal')
@@ -27,3 +28,13 @@ def principal(request):
 def nosotros(request):
 
     return render(request, "nosotros.html")
+
+def confirmacion(request):
+    
+    return render(request, 'confirmacion.html')
+
+@login_required(login_url='login')
+def cursos(request):
+    tablaVideos = videos.objects.all()
+    tablaClasificacion = clasificacion.objects.all()
+    return render(request, "Cursos.html", {'tablaVideos': tablaVideos, 'tablaClasificacion':tablaClasificacion})

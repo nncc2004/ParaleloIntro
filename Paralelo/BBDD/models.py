@@ -21,11 +21,24 @@ class lista_reproduccion(models.Model):
     id_video = models.IntegerField()
     def __str__(self):
         return "IdCurso: %s. IdVideo: %s." %(self.id_curso, self.id_video)
+    
+class clasificacion(models.Model):
+    tema = models.CharField(max_length=30, unique=True)
+    def __str__(self):
+        return self.tema
+    def save(self, *args, **kwargs):
+        self.tema = self.tema.upper()
+        existing_clasificacion = clasificacion.objects.filter(tema=self.tema)
+        
+        if existing_clasificacion.exists():
+            return
+        super().save(*args, **kwargs)
+    
 class videos(models.Model):
     nombre_video = models.CharField(max_length=100)
     duracion = models.CharField(max_length=100)
     url = models.URLField()
     autor = models.CharField(max_length=100)
-    clasificacion = models.CharField(max_length=100)
+    tematica = models.ForeignKey(clasificacion, on_delete = models.PROTECT, to_field="tema")
     def __str__(self):
-        return "Nombre_video: %s. Duración: %s. URL: %s. Autor: %s, Clasificación: %s" %(self.nombre_video, self.duracion, self.url, self.autor, self.clasificacion)
+        return "Nombre_video: %s. Duración: %s. URL: %s. Autor: %s, Tema: %s" %(self.nombre_video, self.duracion, self.url, self.autor, self.tematica)

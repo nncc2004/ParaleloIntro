@@ -1,0 +1,11 @@
+{% extends 'index.html'%}
+
+{% block content %}
+<body>
+    <h1>¿Está seguro de querer cerrar su sesión?</h1>
+    <a class="button" href="{% url 'principal'%}">Volver a inicio</a>
+    <a class="button" href="{% url 'logout'%}">Cerrar Sesión</a>
+
+</body>
+
+{% endblock content %}

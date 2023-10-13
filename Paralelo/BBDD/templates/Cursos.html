@@ -1,0 +1,22 @@
+{% extends 'index.html'%}
+
+{% block content %}
+<body>
+    <h1>Página Cursos</h1>
+    <br>
+    <hr>
+    
+    {% for calsificacion in tablaClasificacion %}
+    <br>
+        <h2>{{calsificacion.tema}}</h2>
+        {% for video in tablaVideos %}
+            {% if video.tematica.tema == calsificacion.tema %}
+                <iframe width="560" height="315" src="{{video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <p>Nombre: {{video.nombre_video}} || Autor: {{video.autor}}</p>
+                <br><br><br>
+            {%endif%}
+        {% endfor %}
+    {% endfor %}
+</body>
+
+{% endblock content %}
