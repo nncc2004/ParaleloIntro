@@ -1,18 +1,11 @@
 from django.db import models
 
 # Create your models here.
-class curso_usuario(models.Model):
-    id_curso = models.IntegerField()
-    id_usuario = models.IntegerField()
-    progreso = models.IntegerField()
-    def __str__(self):
-        return "IdCurso: %s. IdUsuario: %s. Progreso: %s." %(self.id_curso, self.id_usuario, self.progreso)
-
 class cursos(models.Model):
     nombre_curso = models.CharField(max_length=100)
-    cantidad_videos = models.IntegerField()
-    autor = models.CharField(max_length=100)
-    privacidad = models.BooleanField()
+    cantidad_videos = models.IntegerField(default=0)
+    autor = models.IntegerField()
+    privacidad = models.BooleanField(default=True)
     def __str__(self):
         return "Nombre_Curso: %s. Cantidad_Videos: %s. Autor: %s. Privacidad: %s." %( self.nombre_curso, self.cantidad_videos, self.autor, self.privacidad)
 

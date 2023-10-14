@@ -16,7 +16,17 @@
                         <p class="titulo">{{video.nombre_video}} </p>
                         <iframe src="{{video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         <p class="autor">{{video.autor}}</p>
-                        <button>Añadir a la lista</button>
+                        <label for="menu">Añadir a la lista</label>
+
+                        <form method="POST" action="{% url 'cursos' %}">
+                            {% csrf_token %}
+                            <select name="listas" id="menu">
+                                {% for curso in cursosCoincidentes%}
+                                <option value="{{curso.id}},{{video.id}}">{{curso.nombre_curso}}</option>
+                                {%endfor%}
+                            </select>
+                            <button type="submit">Añadir</button>
+                        </form>
                     </div>
                 
                     {%endif%}

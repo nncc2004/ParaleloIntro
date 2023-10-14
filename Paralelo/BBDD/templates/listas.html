@@ -1,0 +1,31 @@
+{% extends 'index.html'%}
+
+{% block content %}
+<body>
+    <p>Pagina listas</p>
+    <a href="{% url 'crear_listas'%}">Crea una lista</a>
+    <p>Tus listas</p>
+    {%for x in tablaCursos%}
+        {%if x.autor == user.id %}
+            <p>{{x.nombre_curso}}</p>
+            <div class="tema"> 
+            {%for j in tablaLista_reproduccion%}
+                {%if j.id_curso == x.id%}
+                    {%for k in tablaVideos%}
+                        {%if k.id == j.id_video%}
+                        <div class="video">
+                        <p class="titulo">{{k.nombre_video}} </p>
+                        <iframe src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <p class="autor">{{k.autor}}</p>
+                        </div>
+                        {%endif%}
+                    {%endfor%}
+                {%endif%}
+            {%endfor%}
+        </div>
+        {%endif%}
+    {%endfor%}
+
+</body>
+
+{% endblock content %}

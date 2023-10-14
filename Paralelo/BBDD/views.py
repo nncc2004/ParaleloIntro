@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
-from .forms import RegistroDeusuario
+from .forms import RegistroDeusuario, CrearListaForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 # Create your views here.
@@ -34,12 +34,55 @@ def confirmacion(request):
     return render(request, 'confirmacion.html')
 
 @login_required(login_url='login')
-def cursos(request):
+def view_cursos(request):
+    usuario = request.user
+    tablaCursos = cursos.objects.all()
     tablaVideos = videos.objects.all()
+    
     temas = []
+    cursosCoincidentes = []
     for x in tablaVideos:
         a = str(x.tematica)
         if a not in temas:
             temas.append(a)
+    for x in tablaCursos:
+            if x.autor == usuario.id:
+                cursosCoincidentes.append(x)
 
-    return render(request, "Cursos.html", {'tablaVideos': tablaVideos, 'tematicas': temas})
+    if request.method == 'POST':
+        infoValue = request.POST.get('listas', None)
+        infoValue = infoValue.split(",")
+        IdCursoSeleccionado = int(infoValue[0])
+        IdVideoSeleccionado = int(infoValue[1])
+        print(IdCursoSeleccionado, IdVideoSeleccionado)
+
+        if infoValue:
+            registroCurso = lista_reproduccion(id_curso=IdCursoSeleccionado, id_video=IdVideoSeleccionado)
+            registroCurso.save()
+            return redirect('cursos')
+
+    return render(request, "Cursos.html", {'tablaVideos': tablaVideos, 'tematicas': temas, "cursosCoincidentes": cursosCoincidentes})
+
+
+@login_required(login_url='login')
+def listas(request):
+    tablaCursos = cursos.objects.all()
+    tablaVideos = videos.objects.all()
+    tablaLista_reproduccion = lista_reproduccion.objects.all()
+    usuario = request.user
+    return render(request, "listas.html", {'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "user": usuario})
+
+def crear_listas(request):
+    if request.method == 'POST':
+        form = CrearListaForm(request.POST)
+        if form.is_valid():
+            curso = form.save(commit=False)
+            autor = request.user
+            idUser = autor.id
+            curso.autor = idUser
+            curso.save()
+        return redirect('listas')
+    else:
+        form = CrearListaForm()
+    
+    return render(request, "crear_listas.html", {'form': form})

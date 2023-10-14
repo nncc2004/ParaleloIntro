@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import *
 
 class RegistroDeusuario(UserCreationForm):
     first_name = forms.CharField(label="Nombre")
@@ -12,3 +13,8 @@ class RegistroDeusuario(UserCreationForm):
     class Meta: 
         model = User
         fields = ['username', 'first_name','last_name', 'email', 'password1', 'password2']
+
+class CrearListaForm(forms.ModelForm):
+    class Meta:
+        model = cursos
+        fields = ['nombre_curso']
