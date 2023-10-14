@@ -36,5 +36,10 @@ def confirmacion(request):
 @login_required(login_url='login')
 def cursos(request):
     tablaVideos = videos.objects.all()
-    tablaClasificacion = clasificacion.objects.all()
-    return render(request, "Cursos.html", {'tablaVideos': tablaVideos, 'tablaClasificacion':tablaClasificacion})
+    temas = []
+    for x in tablaVideos:
+        a = str(x.tematica)
+        if a not in temas:
+            temas.append(a)
+
+    return render(request, "Cursos.html", {'tablaVideos': tablaVideos, 'tematicas': temas})

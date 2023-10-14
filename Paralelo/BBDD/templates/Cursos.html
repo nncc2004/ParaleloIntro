@@ -1,22 +1,32 @@
 {% extends 'index.html'%}
 
 {% block content %}
-<body>
+<body class="cursos">
     <h1>Página Cursos</h1>
     <br>
     <hr>
-    
-    {% for calsificacion in tablaClasificacion %}
-    <br>
-        <h2>{{calsificacion.tema}}</h2>
-        {% for video in tablaVideos %}
-            {% if video.tematica.tema == calsificacion.tema %}
-                <iframe width="560" height="315" src="{{video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                <p>Nombre: {{video.nombre_video}} || Autor: {{video.autor}}</p>
-                <br><br><br>
-            {%endif%}
+      
+        {% for x in tematicas %}
+
+        <h2>{{x}}</h2>
+        <div class="tema">  
+                {% for video in tablaVideos %}
+                    {% if video.tematica.tema == x %}
+                    <div class="video">
+                        <p class="titulo">{{video.nombre_video}} </p>
+                        <iframe src="{{video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <p class="autor">{{video.autor}}</p>
+                        <button>Añadir a la lista</button>
+                    </div>
+                
+                    {%endif%}
+                {% endfor %}
+
+        </div>
         {% endfor %}
-    {% endfor %}
+
+
+
 </body>
 
 {% endblock content %}
