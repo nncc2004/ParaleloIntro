@@ -2,12 +2,12 @@
 
 {% block content %}
 <body>
-    <p>Pagina listas</p>
-    <a href="{% url 'crear_listas'%}">Crea una lista</a>
-    <p>Tus listas</p>
+    <h1>Tus listas de reproducción </h1>
+    <a class="nlista" href="{% url 'crear_listas'%}">Crea una lista</a>
+    <br><hr><br>
     {%for x in tablaCursos%}
         {%if x.autor == user.id %}
-            <p>{{x.nombre_curso}}</p>
+            <h2>{{x.nombre_curso}}</h2>
             <div class="tema"> 
             {%for j in tablaLista_reproduccion%}
                 {%if j.id_curso == x.id%}
@@ -15,8 +15,9 @@
                         {%if k.id == j.id_video%}
                         <div class="video">
                         <p class="titulo">{{k.nombre_video}} </p>
-                        <iframe src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe id="frameVideo" src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         <p class="autor">{{k.autor}}</p>
+                        <p>registro N°{{j.id}}</p>
                         </div>
                         {%endif%}
                     {%endfor%}

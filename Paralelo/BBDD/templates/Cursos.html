@@ -2,7 +2,7 @@
 
 {% block content %}
 <body class="cursos">
-    <h1>Página Cursos</h1>
+    <h1>Cursos disponibles</h1>
     <br>
     <hr>
       
@@ -14,10 +14,10 @@
                     {% if video.tematica.tema == x %}
                     <div class="video">
                         <p class="titulo">{{video.nombre_video}} </p>
-                        <iframe src="{{video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe id="frameVideo" src="{{video.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         <p class="autor">{{video.autor}}</p>
                         <label for="menu">Añadir a la lista</label>
-
+                        <div class="extraAction">
                         <form method="POST" action="{% url 'cursos' %}">
                             {% csrf_token %}
                             <select name="listas" id="menu">
@@ -26,6 +26,7 @@
                                 {%endfor%}
                             </select>
                             <button type="submit">Añadir</button>
+                        </div>
                         </form>
                     </div>
                 
