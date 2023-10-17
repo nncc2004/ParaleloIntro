@@ -13,12 +13,19 @@
                 {%if j.id_curso == x.id%}
                     {%for k in tablaVideos%}
                         {%if k.id == j.id_video%}
-                        <div class="video">
-                        <p class="titulo">{{k.nombre_video}} </p>
-                        <iframe id="frameVideo" src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <p class="autor">{{k.autor}}</p>
-                        <p>registro N°{{j.id}}</p>
-                        </div>
+                            <div class="video">
+                                <p class="titulo">{{k.nombre_video}} </p>
+                                <iframe id="frameVideo" src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p class="autor">{{k.autor}}</p>
+                                <p>registro N°{{j.id}}</p>
+                                <div>
+                                    <form method="POST" action="{% url 'listas'%}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="eliminar_id" value="{{j.id}}">
+                                        <button type="submit" >Eliminar de la lista</button>
+                                    </form>
+                                </div> 
+                            </div>
                         {%endif%}
                     {%endfor%}
                 {%endif%}
@@ -26,7 +33,5 @@
         </div>
         {%endif%}
     {%endfor%}
-
 </body>
-
 {% endblock content %}
