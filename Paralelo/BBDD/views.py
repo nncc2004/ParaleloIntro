@@ -72,10 +72,19 @@ def listas(request):
     usuario = request.user
     
     if request.method == 'POST':
-        IDeliminacion = request.POST.get('eliminar_id')
-        eliminar = lista_reproduccion.objects.get(pk=IDeliminacion)
-        eliminar.delete()
-        return render(request, "listas.html", {'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "user": usuario})
+        if 'eliminar_id' in request.POST:
+            IDeliminacion = request.POST.get('eliminar_id')
+            eliminar = lista_reproduccion.objects.get(pk=IDeliminacion)
+            eliminar.delete()
+            return render(request, "listas.html", {'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "user": usuario})
+        
+        if 'eliminar_id_lista' in request.POST:
+            IDeliminacion = request.POST.get('eliminar_id_lista')
+            eliminar = cursos.objects.get(pk=IDeliminacion)
+            eliminar.delete()
+            return render(request, "listas.html", {'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "user": usuario})
+    
+
     return render(request, "listas.html", {'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "user": usuario})
 
 @login_required(login_url='login')

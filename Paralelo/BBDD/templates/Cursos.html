@@ -7,8 +7,8 @@
     <hr>
       
         {% for x in tematicas %}
-
-        <h2>{{x}}</h2>
+        <div class="Nombre"><h2>{{x}}</h2></div>
+        
         <div class="tema">  
                 {% for video in tablaVideos %}
                     {% if video.tematica.tema == x %}

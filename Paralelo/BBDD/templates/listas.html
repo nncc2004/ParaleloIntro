@@ -7,7 +7,16 @@
     <br><hr><br>
     {%for x in tablaCursos%}
         {%if x.autor == user.id %}
+        <div class="Nombre">  
             <h2>{{x.nombre_curso}}</h2>
+            <div class="Form1Listas">
+                <form method="POST" action="{% url 'listas'%}">
+                    {% csrf_token %}
+                    <input type="hidden" name="eliminar_id_lista" value="{{x.id}}">
+                    <button type="submit" > Eliminar "{{x.nombre_curso}} "</button>
+                </form>
+            </div>
+        </div> 
             <div class="tema"> 
             {%for j in tablaLista_reproduccion%}
                 {%if j.id_curso == x.id%}

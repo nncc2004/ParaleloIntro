@@ -72,6 +72,7 @@ footer{
 /*Cursos y listas*/
 h2{
     margin: 0 10px 0 10px;
+    float: left;
 }
 
 .tema{
@@ -121,4 +122,15 @@ h2{
 }
 .nlista{
     font-size:x-large;
+}
+
+.Nombre{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.Form1Listas{
+    float: right;
+    margin-right: 4vw;
 }
