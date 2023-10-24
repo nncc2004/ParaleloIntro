@@ -102,3 +102,20 @@ def crear_listas(request):
         form = CrearListaForm()
     
     return render(request, "crear_listas.html", {'form': form})
+
+@login_required(login_url='login')
+def crear_listas_publicas(request):
+    if request.method == 'POST':
+        form = CrearListaForm(request.POST)
+        if form.is_valid():
+            curso = form.save(commit=False)
+            autor = request.user
+            idUser = autor.id
+            curso.autor = idUser
+            curso.privacidad = False
+            curso.save()
+        return redirect('listas')
+    else:
+        form = CrearListaForm()
+    
+    return render(request, "crear_listas_publicas.html", {'form': form})

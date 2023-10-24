@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import principal, nosotros, registro, view_cursos, confirmacion, listas, crear_listas
+from .views import principal, nosotros, registro, view_cursos, confirmacion, listas, crear_listas, crear_listas_publicas
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
@@ -12,4 +12,5 @@ urlpatterns = [
     path('confirmacion/', confirmacion, name = "confirmacion"),
     path('listas/', listas, name = "listas"),
     path('crear_listas/', crear_listas, name = "crear_listas"),
+    path('crear_listas_publicas/', crear_listas_publicas, name = "crear_listas_publicas"),
 ]

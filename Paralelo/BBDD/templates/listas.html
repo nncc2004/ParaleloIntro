@@ -4,6 +4,9 @@
 <body>
     <h1>Tus listas de reproducción </h1>
     <a class="nlista" href="{% url 'crear_listas'%}">Crea una lista</a>
+    {%if request.user.is_staff%}
+    <a class="nlista" href="{% url 'crear_listas_publicas'%}">Crea una lista pública</a>
+    {%endif%}
     <br><hr><br>
     {%for x in tablaCursos%}
         {%if x.autor == user.id %}
@@ -26,7 +29,6 @@
                                 <p class="titulo">{{k.nombre_video}} </p>
                                 <iframe id="frameVideo" src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 <p class="autor">{{k.autor}}</p>
-                                <p>registro N°{{j.id}}</p>
                                 <div>
                                     <form method="POST" action="{% url 'listas'%}">
                                         {% csrf_token %}
@@ -42,5 +44,50 @@
         </div>
         {%endif%}
     {%endfor%}
+
+    <h1>Listas públicas</h1>
+    <br><hr><br>
+    {%for x in tablaCursos%}
+        {%if x.privacidad == False %}
+        <div class="Nombre">  
+            <h2>{{x.nombre_curso}}</h2>
+            {%if request.user.is_staff%}
+            <div class="Form1Listas">
+                <form method="POST" action="{% url 'listas'%}">
+                    {% csrf_token %}
+                    <input type="hidden" name="eliminar_id_lista" value="{{x.id}}">
+                    <button type="submit" > Eliminar "{{x.nombre_curso}} "</button>
+                </form>
+            </div>
+            {%endif%}
+        </div> 
+            <div class="tema"> 
+            {%for j in tablaLista_reproduccion%}
+                {%if j.id_curso == x.id%}
+                    {%for k in tablaVideos%}
+                        {%if k.id == j.id_video%}
+                            <div class="video">
+                                <p class="titulo">{{k.nombre_video}} </p>
+                                <iframe id="frameVideo" src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p class="autor">{{k.autor}}</p>
+                                {%if request.user.is_staff%}
+                                <div>
+                                    <form method="POST" action="{% url 'listas'%}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="eliminar_id" value="{{j.id}}">
+                                        <button type="submit" >Eliminar de la lista</button>
+                                    </form>
+                                </div>
+                                {%endif%} 
+                            </div>
+                        {%endif%}
+                    {%endfor%}
+                {%endif%}
+            {%endfor%}
+        </div>
+        {%endif%}
+    {%endfor%}
+
+
 </body>
 {% endblock content %}

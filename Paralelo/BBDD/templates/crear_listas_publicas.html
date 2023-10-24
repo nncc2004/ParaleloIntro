@@ -1,0 +1,13 @@
+{% extends 'index.html'%}
+
+{% block content %}
+<body>
+    <p>Crear lista pública</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" id="submit">Enviar</button>
+      </form>
+</body>
+
+{% endblock content %}
