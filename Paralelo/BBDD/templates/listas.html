@@ -3,7 +3,7 @@
 {% block content %}
 <body>
     <h1>Tus listas de reproducción </h1>
-    <a class="nlista" href="{% url 'crear_listas'%}">Crea una lista</a>
+    <a  class="nlista" href="{% url 'crear_listas'%}">Crea una lista</a>
     {%if request.user.is_staff%}
     <a class="nlista" href="{% url 'crear_listas_publicas'%}">Crea una lista pública</a>
     {%endif%}
@@ -16,7 +16,7 @@
                 <form method="POST" action="{% url 'listas'%}">
                     {% csrf_token %}
                     <input type="hidden" name="eliminar_id_lista" value="{{x.id}}">
-                    <button type="submit" > Eliminar "{{x.nombre_curso}} "</button>
+                    <button class="boton" type="submit" > Eliminar "{{x.nombre_curso}} "</button>
                 </form>
             </div>
         </div> 
@@ -33,7 +33,7 @@
                                     <form method="POST" action="{% url 'listas'%}">
                                         {% csrf_token %}
                                         <input type="hidden" name="eliminar_id" value="{{j.id}}">
-                                        <button type="submit" >Eliminar de la lista</button>
+                                        <button class="boton" type="submit" >Eliminar de la lista</button>
                                     </form>
                                 </div> 
                             </div>
@@ -56,7 +56,7 @@
                 <form method="POST" action="{% url 'listas'%}">
                     {% csrf_token %}
                     <input type="hidden" name="eliminar_id_lista" value="{{x.id}}">
-                    <button type="submit" > Eliminar "{{x.nombre_curso}} "</button>
+                    <button  class="boton"type="submit" > Eliminar "{{x.nombre_curso}} "</button>
                 </form>
             </div>
             {%endif%}
@@ -75,7 +75,7 @@
                                     <form method="POST" action="{% url 'listas'%}">
                                         {% csrf_token %}
                                         <input type="hidden" name="eliminar_id" value="{{j.id}}">
-                                        <button type="submit" >Eliminar de la lista</button>
+                                        <button class="boton" type="submit" >Eliminar de la lista</button>
                                     </form>
                                 </div>
                                 {%endif%} 

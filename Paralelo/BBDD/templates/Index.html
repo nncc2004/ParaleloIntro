@@ -20,7 +20,6 @@
             <li><a href="{% url 'confirmacion'%}">Cerrar Sesión</a></li>
             {%else%}
             <li><a href="{% url 'login'%}">Iniciar Sesión</a></li>
-            <li><a href="{% url 'registro'%}">Regístrate</a></li>
             {%endif%}
             <li><a href="{% url 'nosotros'%}">Nosotros</a></li>
             {%if request.user.is_staff%}

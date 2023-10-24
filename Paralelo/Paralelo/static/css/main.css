@@ -17,6 +17,16 @@ p{
     padding-top: 64px;
     min-height: 95vh;
 }
+.boton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: gray; /* Color de fondo azul, puedes personalizarlo */
+    color: black;/* Color del texto en blanco */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    border: 1px solid black; /* Borde del botón */
+    border-radius: 5px; /* Bordes redondeados */
+    font-weight: bold;
+}
 
 /* navbar */
 header{
@@ -122,6 +132,9 @@ h2{
 }
 .nlista{
     font-size:x-large;
+    color: black;
+    padding-right: 50px;
+    padding-left: 10px;
 }
 
 .Nombre{

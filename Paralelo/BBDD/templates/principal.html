@@ -14,7 +14,8 @@
         </ul>
     </div>
     {%else%}
-    <h1><a href="{% url 'login'%}">Inicia sesión</a> o <a href="{% url 'registro'%}">regístrate</a> para continuar</h1>
+    <h2>Inicia sesón para acceder al contenido de la página</h2>
+    <a class="boton" href="{% url 'login'%}">Inicia sesión</a>
     {%endif%}
 </body>
 {% endblock %}
