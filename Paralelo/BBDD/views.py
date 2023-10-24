@@ -54,7 +54,6 @@ def view_cursos(request):
         infoValue = infoValue.split(",")
         IdCursoSeleccionado = int(infoValue[0])
         IdVideoSeleccionado = int(infoValue[1])
-        print(IdCursoSeleccionado, IdVideoSeleccionado)
 
         if infoValue:
             registroCurso = lista_reproduccion(id_curso=IdCursoSeleccionado, id_video=IdVideoSeleccionado)
@@ -82,6 +81,7 @@ def listas(request):
             IDeliminacion = request.POST.get('eliminar_id_lista')
             eliminar = cursos.objects.get(pk=IDeliminacion)
             eliminar.delete()
+            lista_reproduccion.objects.filter(id_curso=IDeliminacion).delete()
             return render(request, "listas.html", {'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "user": usuario})
     
 
