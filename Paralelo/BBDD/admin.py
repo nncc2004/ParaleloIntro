@@ -1,5 +1,5 @@
 from django.contrib import admin
-from BBDD.models import lista_reproduccion, cursos, videos, clasificacion
+from BBDD.models import lista_reproduccion, cursos, videos, clasificacion, recomendacion
 # Register your models here.
 
 
@@ -24,3 +24,4 @@ admin.site.register(cursos, CursosAdmin)
 admin.site.register(lista_reproduccion,listaAdmin)
 admin.site.register(videos, VideoAdmin)
 admin.site.register(clasificacion)
+admin.site.register(recomendacion)

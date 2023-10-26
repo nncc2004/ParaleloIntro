@@ -20,11 +20,11 @@ p{
 .boton {
     display: inline-block;
     padding: 10px 20px;
-    background-color: gray; /* Color de fondo azul, puedes personalizarlo */
-    color: black;/* Color del texto en blanco */
-    text-decoration: none; /* Elimina el subrayado del enlace */
-    border: 1px solid black; /* Borde del botón */
-    border-radius: 5px; /* Bordes redondeados */
+    background-color: gray;
+    color: black;
+    text-decoration: none;
+    border: 1px solid black; 
+    border-radius: 5px;
     font-weight: bold;
 }
 
@@ -143,6 +143,20 @@ h2{
     align-items: center; 
 }
 
+.Recomendaciones{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    
+}
+
+.Recomendaciones .p1{
+    margin-left: 25%;
+
+}
+.Recomendaciones .p2{
+    margin-right: 25%;
+}
 .Form1Listas{
     float: right;
     margin-right: 4vw;

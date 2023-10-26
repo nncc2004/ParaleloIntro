@@ -3,10 +3,8 @@
 {% block content %}
 <body>
     <h1>Tus listas de reproducción </h1>
-    <a  class="nlista" href="{% url 'crear_listas'%}">Crea una lista</a>
-    {%if request.user.is_staff%}
-    <a class="nlista" href="{% url 'crear_listas_publicas'%}">Crea una lista pública</a>
-    {%endif%}
+    <a  class="nlista" href="{% url 'crear_listas'%}">Crea una lista personal</a>
+    
     <br><hr><br>
     {%for x in tablaCursos%}
         {%if x.autor == user.id %}
@@ -46,6 +44,10 @@
     {%endfor%}
 
     <h1>Listas públicas</h1>
+    {%if request.user.is_staff%}
+    <a class="nlista" href="{% url 'crear_listas_publicas'%}">Crea una lista pública</a>
+    <a class="nlista" href="{% url 'crear_recomendacion'%}">Añadir recomendación a una lista pública</a>
+    {%endif%}
     <br><hr><br>
     {%for x in tablaCursos%}
         {%if x.privacidad == False %}
@@ -61,6 +63,26 @@
             </div>
             {%endif%}
         </div> 
+        <div class="Recomendaciones">
+            {%for recomendacion in tablaRecomendaciones%}
+                {%if recomendacion.lista_central == x.id%}
+                    {%if recomendacion.lista_previa != -1%}
+                            {%for lista in tablaCursos%}
+                                {%if lista.id == recomendacion.lista_previa%}
+                                    <p class="p1">Lista previa recomendada: {{lista.nombre_curso}}</p>
+                                {%endif%}
+                            {%endfor%}
+                    {%endif%}
+                    {%if recomendacion.lista_siguiente != -1%}
+                            {%for lista in tablaCursos%}
+                                {%if lista.id == recomendacion.lista_siguiente%}
+                                    <p class="p2">Lista siguiente recomendada: {{lista.nombre_curso}}</p>
+                                {%endif%}
+                            {%endfor%}
+                    {%endif%}
+                {%endif%}
+            {%endfor%}
+        </div>
             <div class="tema"> 
             {%for j in tablaLista_reproduccion%}
                 {%if j.id_curso == x.id%}

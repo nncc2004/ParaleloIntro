@@ -35,3 +35,11 @@ class videos(models.Model):
     tematica = models.ForeignKey(clasificacion, on_delete = models.PROTECT, to_field="tema")
     def __str__(self):
         return "Nombre_video: %s. Duración: %s. URL: %s. Autor: %s, Tema: %s" %(self.nombre_video, self.duracion, self.url, self.autor, self.tematica)
+    
+class recomendacion(models.Model):
+    lista_central = models.IntegerField(default=-1)
+    lista_previa = models.IntegerField(default=-1)
+    lista_siguiente = models.IntegerField(default=-1)
+
+    def __str__(self):
+        return "Lista central: %s. Lista previa: %s. Lista siguiente: %s" %(self.lista_central, self.lista_previa, self.lista_siguiente)

@@ -1,0 +1,46 @@
+{% extends 'index.html'%}
+
+{% block content %}
+<body>
+    <h1>Pagina crear recomendación</h1>
+
+    <form method="POST" action="{% url 'crear_recomendacion' %}">
+        {% csrf_token %}
+
+        <p>Seleccione la lista a la que añadir la recomendacion</p>
+        <select name="listaCentral" id="menu">
+            {%for listaPublica in tablaCursos%}
+                {%if listaPublica.privacidad == False%}
+                    <option value="{{listaPublica.id}}">{{listaPublica.nombre_curso}}</option>
+                {%endif%} 
+            {%endfor%}
+        </select>
+
+        <p>Seleccione la lista previa</p>
+        <select name="listaPrevia" id="menu">
+            <option value="-1">Nada</option>
+            {%for listaPublica in tablaCursos%}
+                {%if listaPublica.privacidad == False%}
+                    <option value="{{listaPublica.id}}">{{listaPublica.nombre_curso}}</option>
+                {%endif%} 
+            {%endfor%}
+        </select>
+
+        <p>Seleccione la lista siguiente</p>
+        <select name="listaSiguiente" id="menu">
+            <option value="-1">Nada</option>
+                {%for listaPublica in tablaCursos%}
+                    {%if listaPublica.privacidad == False%}
+                        <option value="{{listaPublica.id}}">{{listaPublica.nombre_curso}}</option>
+                    {%endif%} 
+                {%endfor%}
+        </select>
+
+
+        <br><br>
+        <button class="boton" type="submit">Añadir</button>
+    </div>
+    </form>
+</body>
+
+{% endblock content %}
