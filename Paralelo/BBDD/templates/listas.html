@@ -11,7 +11,7 @@
         <div class="Nombre">  
             <div>
                 <h2>{{x.nombre_curso}}</h2>
-                <a href="{% url 'editar_lista' x.id x.nombre_curso%}">editar lista {{x.id}}</a>
+                <a class="btn btn-outline-dark" href="{% url 'editar_lista' x.id x.nombre_curso%}">editar lista</a>
             </div>
         </div> 
             <div class="tema"> 
@@ -44,7 +44,7 @@
         <div class="Nombre">  
             <div>
                 <h2>{{x.nombre_curso}}</h2>
-                {%if request.user.is_staff%} <a href="{% url 'editar_lista' x.id x.nombre_curso%}">editar lista {{x.id}}</a> {%endif%}
+                {%if request.user.is_staff%} <a class="btn btn-outline-dark" href="{% url 'editar_lista' x.id x.nombre_curso%}">editar lista</a> {%endif%}
             </div>
         </div> 
         <div class="Recomendaciones">

@@ -2,12 +2,14 @@
 
 {% block content %}
 <body>
-    <h1>Registro de Usuarios</h1>
-    <form class="form" method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button class="boton" type="submit" id="submit">Enviar</button>
-    </form>
-    <h3>¿Ya tienes una cuenta? <a class="boton" href="{% url 'login'%}">Inicia sesión</a></h3>
+    <div class="formulario">
+        <h1 class="text-center">Regístrate</h1>
+        <h5 class="text-center">¿Ya tienes una cuenta? <a class="btn btn-dark" href="{% url 'login'%}">Inicia sesión</a></h5>
+        <form class="formUsers" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-outline-dark" type="submit" id="submit">Enviar</button>
+        </form>
+    </div>
 </body>
 {% endblock %}

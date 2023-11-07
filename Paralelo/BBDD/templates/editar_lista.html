@@ -9,7 +9,7 @@
             <form method="POST" action="{% url 'editar_lista' curso nombre%}">
                 {% csrf_token %}
                 <input type="text" name="cambiar_nombre" required>
-                <button class="boton" type="submit" >renombrar</button>
+                <button class="btn btn-outline-dark" type="submit" >renombrar</button>
             </form>
         </div> 
     </div>
@@ -24,7 +24,7 @@
                     <form method="POST" action="{% url 'editar_lista' curso nombre%}">
                         {% csrf_token %}
                         <input type="hidden" name="eliminar_id_lista" value="{{x.id}}">
-                        <input type="submit" value='Eliminar "{{x.nombre_curso}}"' class="boton" onclick="return confirm('¿Estás seguro de eliminar la lista? Esta acción no se puede deshacer')">
+                        <input type="submit" value='Eliminar "{{x.nombre_curso}}"' class="btn btn-dark" onclick="return confirm('¿Estás seguro de eliminar la lista? Esta acción no se puede deshacer')">
                     </form>
                 </div>
             </div> 
@@ -42,7 +42,7 @@
                                         <form method="POST" action="{% url 'editar_lista' curso nombre%}">
                                             {% csrf_token %}
                                             <input type="hidden" name="eliminar_id" value="{{j.id}}">
-                                            <button class="boton submit" type="submit" >Eliminar de la lista</button>
+                                            <button class="btn btn-dark submit" type="submit" >Eliminar de la lista</button>
                                         </form>
                                     </div> 
                                 </div>
@@ -103,7 +103,7 @@
                             {%endfor%}
                         </select> 
                     </div>
-                    <button class="boton" type="submit"  name="cambio_orden">Efectuar el cambio</button>
+                    <button class="btn btn-outline-dark" type="submit"  name="cambio_orden">Efectuar el cambio</button>
                 </form>
             </div>
     </div>

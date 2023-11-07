@@ -4,8 +4,7 @@ from django.contrib import messages
 from .forms import RegistroDeusuario, CrearListaForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+    
 # Create your views here.
 
 def registro(request):
