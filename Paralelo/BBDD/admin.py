@@ -10,7 +10,7 @@ class CursosAdmin(admin.ModelAdmin):
 
 
 class listaAdmin(admin.ModelAdmin):
-    list_display = ("id_curso", "id_video")
+    list_display = ("id_curso", "id_video", "posicion")
     search_fields = ( "id_curso", "id_video")
 
 class VideoAdmin(admin.ModelAdmin):

@@ -1,0 +1,112 @@
+{% extends 'index.html'%}
+
+{% block content %}
+<body>
+    <h1>Edita tu lista "{{nombre}}"</h1> 
+    <div>
+        <h2>Cambiar nombre de la lista:</h2>
+        <div>
+            <form method="POST" action="{% url 'editar_lista' curso nombre%}">
+                {% csrf_token %}
+                <input type="text" name="cambiar_nombre" required>
+                <button class="boton" type="submit" >renombrar</button>
+            </form>
+        </div> 
+    </div>
+    <div>
+        {%for x in tablaCursos%}
+            {%if x.id == curso %}
+            <div class="Nombre">  
+                <div>
+                    <h2>{{x.nombre_curso}}</h2>
+                </div>
+                <div class="Form1Listas">
+                    <form method="POST" action="{% url 'editar_lista' curso nombre%}">
+                        {% csrf_token %}
+                        <input type="hidden" name="eliminar_id_lista" value="{{x.id}}">
+                        <input type="submit" value='Eliminar "{{x.nombre_curso}}"' class="boton" onclick="return confirm('¿Estás seguro de eliminar la lista? Esta acción no se puede deshacer')">
+                    </form>
+                </div>
+            </div> 
+
+            <div class="tema"> 
+                {%for j in tablaLista_reproduccion%}
+                    {%if j.id_curso == x.id%}
+                        {%for k in tablaVideos%}
+                            {%if k.id == j.id_video%}
+                                <div class="video">
+                                    <p class="titulo">{{k.nombre_video}} </p>
+                                    <iframe id="frameVideo" src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <p class="autor">{{k.autor}}</p>
+                                    <div>
+                                        <form method="POST" action="{% url 'editar_lista' curso nombre%}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="eliminar_id" value="{{j.id}}">
+                                            <button class="boton submit" type="submit" >Eliminar de la lista</button>
+                                        </form>
+                                    </div> 
+                                </div>
+                            {%endif%}
+                        {%endfor%}
+                    {%endif%}
+                {%endfor%}
+            </div>
+            {%endif%}
+        {%endfor%}
+        
+    </div>
+
+
+
+
+
+    <div>
+        <h2>Intercambiar el orden de dos videos</h2>
+        <br><br>
+            <div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div id="CambioIzquierda">
+                        <p>Seleccione el primer video</p>
+                        <select name="pos1">   
+                            {% for x in tablaCursos %}
+                                {% if x.id == curso %}
+                                    {% for j in tablaLista_reproduccion %}
+                                        {% if j.id_curso == x.id %}
+                                            {% for k in tablaVideos %}
+                                                {% if k.id == j.id_video %}
+                                                    <option value="{{ j.posicion }}"> {{ k.nombre_video}} </option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </select>     
+                    </div>
+
+                    <div id="CambioDerecha">
+                        <p>Seleccione un video</p>
+                        <select name = "pos2">   
+                            {%for x in tablaCursos%}
+                                {%if x.id == curso %}
+                                    {%for j in tablaLista_reproduccion%}
+                                        {%if j.id_curso == x.id%}
+                                        {%for k in tablaVideos%}
+                                            {%if k.id == j.id_video%}
+                                            <option value="{{j.posicion}}">{{k.nombre_video}}</option>
+                                            {%endif%}
+                                        {%endfor%}
+                                        {%endif%}
+                                    {%endfor%}
+                                {%endif%}
+                            {%endfor%}
+                        </select> 
+                    </div>
+                    <button class="boton" type="submit"  name="cambio_orden">Efectuar el cambio</button>
+                </form>
+            </div>
+    </div>
+</body>
+
+{% endblock content %}

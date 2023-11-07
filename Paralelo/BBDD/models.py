@@ -12,6 +12,16 @@ class cursos(models.Model):
 class lista_reproduccion(models.Model):
     id_curso = models.IntegerField()
     id_video = models.IntegerField()
+    posicion = models.IntegerField(null=True)
+    def save(self, *args, **kwargs):
+        if not self.posicion:
+
+            max_posicion = lista_reproduccion.objects.aggregate(models.Max('posicion'))['posicion__max']
+            if max_posicion is not None:
+                self.posicion = max_posicion + 1
+            else:
+                self.posicion = 1
+        super(lista_reproduccion, self).save(*args, **kwargs)
     def __str__(self):
         return "IdCurso: %s. IdVideo: %s." %(self.id_curso, self.id_video)
     

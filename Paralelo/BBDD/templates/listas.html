@@ -7,15 +7,11 @@
     
     <br><hr><br>
     {%for x in tablaCursos%}
-        {%if x.autor == user.id %}
+        {%if x.autor == user.id and x.privacidad == True%}
         <div class="Nombre">  
-            <h2>{{x.nombre_curso}}</h2>
-            <div class="Form1Listas">
-                <form method="POST" action="{% url 'listas'%}">
-                    {% csrf_token %}
-                    <input type="hidden" name="eliminar_id_lista" value="{{x.id}}">
-                    <button class="boton" type="submit" > Eliminar "{{x.nombre_curso}} "</button>
-                </form>
+            <div>
+                <h2>{{x.nombre_curso}}</h2>
+                <a href="{% url 'editar_lista' x.id x.nombre_curso%}">editar lista {{x.id}}</a>
             </div>
         </div> 
             <div class="tema"> 
@@ -27,13 +23,7 @@
                                 <p class="titulo">{{k.nombre_video}} </p>
                                 <iframe id="frameVideo" src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 <p class="autor">{{k.autor}}</p>
-                                <div>
-                                    <form method="POST" action="{% url 'listas'%}">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="eliminar_id" value="{{j.id}}">
-                                        <button class="boton" type="submit" >Eliminar de la lista</button>
-                                    </form>
-                                </div> 
+                                <p class="autor">{{k.tematica}}</p>
                             </div>
                         {%endif%}
                     {%endfor%}
@@ -52,16 +42,10 @@
     {%for x in tablaCursos%}
         {%if x.privacidad == False %}
         <div class="Nombre">  
-            <h2>{{x.nombre_curso}}</h2>
-            {%if request.user.is_staff%}
-            <div class="Form1Listas">
-                <form method="POST" action="{% url 'listas'%}">
-                    {% csrf_token %}
-                    <input type="hidden" name="eliminar_id_lista" value="{{x.id}}">
-                    <button  class="boton"type="submit" > Eliminar "{{x.nombre_curso}} "</button>
-                </form>
+            <div>
+                <h2>{{x.nombre_curso}}</h2>
+                {%if request.user.is_staff%} <a href="{% url 'editar_lista' x.id x.nombre_curso%}">editar lista {{x.id}}</a> {%endif%}
             </div>
-            {%endif%}
         </div> 
         <div class="Recomendaciones">
             {%for recomendacion in tablaRecomendaciones%}
@@ -92,15 +76,7 @@
                                 <p class="titulo">{{k.nombre_video}} </p>
                                 <iframe id="frameVideo" src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 <p class="autor">{{k.autor}}</p>
-                                {%if request.user.is_staff%}
-                                <div>
-                                    <form method="POST" action="{% url 'listas'%}">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="eliminar_id" value="{{j.id}}">
-                                        <button class="boton" type="submit" >Eliminar de la lista</button>
-                                    </form>
-                                </div>
-                                {%endif%} 
+                                <p class="autor">{{k.tematica}}</p>
                             </div>
                         {%endif%}
                     {%endfor%}

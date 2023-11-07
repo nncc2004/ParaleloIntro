@@ -18,16 +18,16 @@
                         <p class="autor">{{video.autor}}</p>
                         <label for="menu">Añadir a la lista</label>
                         <div class="extraAction">
-                        <form method="POST" action="{% url 'cursos' %}">
-                            {% csrf_token %}
-                            <select name="listas" id="menu">
-                                {% for curso in cursosCoincidentes%}
-                                <option value="{{curso.id}},{{video.id}}">{{curso.nombre_curso}}</option>
-                                {%endfor%}
-                            </select>
-                            <button class="boton" type="submit">Añadir</button>
-                        </div>
-                        </form>
+                            <form method="POST" class="no_recargar">
+                                {% csrf_token %}
+                                <select name="listas" id="menu">
+                                    {% for curso in cursosCoincidentes%}
+                                    <option value="{{curso.id}},{{video.id}}">{{curso.nombre_curso}}</option>
+                                    {%endfor%}
+                                </select>
+                                <button class="boton" type="submit" onclick="alert('Se ha añadido a la lista')">Añadir</button>
+                            </form>
+                            </div>
                     </div>
                 
                     {%endif%}
@@ -35,8 +35,6 @@
 
         </div>
         {% endfor %}
-
-
 
 </body>
 

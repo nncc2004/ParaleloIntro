@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import principal, nosotros, registro, view_cursos, confirmacion, listas, crear_listas, crear_listas_publicas, crear_recomendiacion
+from .views import principal, nosotros, registro, view_cursos, confirmacion, listas, crear_listas, crear_listas_publicas, crear_recomendiacion, editar_listas
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
@@ -14,4 +14,5 @@ urlpatterns = [
     path('crear-listas/', crear_listas, name = "crear_listas"),
     path('crear-listas_publicas/', crear_listas_publicas, name = "crear_listas_publicas"),
     path('crear-recomendacion/', crear_recomendiacion, name = "crear_recomendacion"),
+    path('editar-lista/<int:idCurso>/<nombreCurso>', editar_listas, name = "editar_lista"),
 ]

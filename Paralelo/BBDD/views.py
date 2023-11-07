@@ -4,6 +4,8 @@ from django.contrib import messages
 from .forms import RegistroDeusuario, CrearListaForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
 
 def registro(request):
@@ -67,24 +69,9 @@ def view_cursos(request):
 def listas(request):
     tablaCursos = cursos.objects.all()
     tablaVideos = videos.objects.all()
-    tablaLista_reproduccion = lista_reproduccion.objects.all()
+    tablaLista_reproduccion = lista_reproduccion.objects.all().order_by('posicion')
     tablaRecomendaciones= recomendacion.objects.all()
     usuario = request.user
-    
-    if request.method == 'POST':
-        if 'eliminar_id' in request.POST:
-            IDeliminacion = request.POST.get('eliminar_id')
-            eliminar = lista_reproduccion.objects.get(pk=IDeliminacion)
-            eliminar.delete()
-            return render(request, "listas.html", {'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "user": usuario, 'tablaRecomendaciones': tablaRecomendaciones})
-        
-        if 'eliminar_id_lista' in request.POST:
-            IDeliminacion = request.POST.get('eliminar_id_lista')
-            eliminar = cursos.objects.get(pk=IDeliminacion)
-            eliminar.delete()
-            lista_reproduccion.objects.filter(id_curso=IDeliminacion).delete()
-            return render(request, "listas.html", {'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "user": usuario,'tablaRecomendaciones': tablaRecomendaciones})
-    
 
     return render(request, "listas.html", {'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "user": usuario,'tablaRecomendaciones': tablaRecomendaciones})
 
@@ -143,3 +130,47 @@ def crear_recomendiacion(request):
         
             return redirect('listas')
     return render(request, "recomendacion.html", {"tablaCursos": tablaCursos, "tablaRecomendacion": tablaRecomendacion})
+
+def editar_listas(request, idCurso, nombreCurso):
+    tablaCursos = cursos.objects.all()
+    tablaVideos = videos.objects.all()
+    tablaLista_reproduccion = lista_reproduccion.objects.all().order_by('posicion')
+    curso = idCurso
+    nombre = nombreCurso
+
+
+    if request.method == 'POST':
+        if 'eliminar_id' in request.POST:
+            IDeliminacion = request.POST.get('eliminar_id')
+            eliminar = lista_reproduccion.objects.get(pk=IDeliminacion)
+            eliminar.delete()
+            return render(request, "editar_lista.html",{'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "curso":curso, "nombre":nombre, "i":0})
+        if 'eliminar_id_lista' in request.POST:
+            IDeliminacion = request.POST.get('eliminar_id_lista')
+            eliminar = cursos.objects.get(pk=IDeliminacion)
+            eliminar.delete()
+            lista_reproduccion.objects.filter(id_curso=IDeliminacion).delete()
+            return redirect('listas')
+        
+        if 'cambiar_nombre' in request.POST:
+            NuevoNombre = request.POST.get('cambiar_nombre')
+            if NuevoNombre:
+                registro = cursos.objects.get(id = curso)
+                registro.nombre_curso = NuevoNombre
+                registro.save()
+                return redirect('listas')
+            
+        if 'cambio_orden' in request.POST:
+            pos1 = request.POST.get('pos1')
+            pos2 = request.POST.get('pos2')
+            
+            vid1 = lista_reproduccion.objects.get(posicion = pos1)
+            print(vid1)
+            vid2 = lista_reproduccion.objects.get(posicion = pos2)
+            print(vid2)
+            vid1.posicion = pos2
+            vid2.posicion = pos1
+            vid1.save()
+            vid2.save()
+
+    return render(request, "editar_lista.html",{'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "curso":curso, "nombre":nombre, "i":0})
