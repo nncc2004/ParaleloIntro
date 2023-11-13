@@ -2,10 +2,13 @@
 
 {% block content %}
 <body>
-    <h1>¿Está seguro de querer cerrar su sesión?</h1>
-    <a class="btn btn-outline-dark" href="{% url 'principal'%}">Volver a inicio</a>
-    <a class="btn btn-outline-dark" href="{% url 'logout'%}">Cerrar Sesión</a>
-
+    <div id="confirmacion">
+        <h1 class="text-center">¿Desea cerrar su sesión?</h1>
+        <div id="botones-confirmacion">
+            <a class="btn btn-outline-dark" href="{% url 'principal'%}">Volver a inicio</a>
+            <a class="btn btn-outline-dark" href="{% url 'logout'%}">Cerrar Sesión</a>
+        </div>
+    </div>
 </body>
 
 {% endblock content %}

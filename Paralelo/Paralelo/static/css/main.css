@@ -215,3 +215,20 @@ h2{
     margin-left: 25%;
     margin-top: 2vh;    
   }
+
+  /* Confirmación cerrar sesión */
+
+#confirmacion{
+    margin-top: 5vh;
+    width: 50%;
+    margin-left: 25%;
+  }
+#botones-confirmacion {
+    width: 50%;
+    margin-left: 25%;   
+}
+
+#botones-confirmacion a {   
+    width: 49%;
+ 
+}

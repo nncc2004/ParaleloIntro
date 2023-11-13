@@ -95,7 +95,7 @@ def envioCorreos():
     print("----------------------------------------------------------------------------------------------")
     
 
-schedule.every(5).seconds.do(envioCorreos)
+schedule.every(10).seconds.do(envioCorreos)
 
 while True:
     schedule.run_pending()

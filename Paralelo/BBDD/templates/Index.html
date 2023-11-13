@@ -23,7 +23,6 @@
             {%else%}
             <li><a href="{% url 'login'%}">Iniciar Sesión</a></li>
             {%endif%}
-            <li><a href="{% url 'nosotros'%}">Nosotros</a></li>
             {%if request.user.is_staff%}
             <li><a href="/admin/">Admin</a></li>
             {%endif%}
