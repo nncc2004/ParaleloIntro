@@ -9,8 +9,9 @@ body {
     background-color: lightgray;
 }
 
-p{
+body p{
     font-size: larger;
+    margin-bottom: 0;
 }
 
 #infoPag{
@@ -114,10 +115,11 @@ h2{
 
 }
 .autor{
-    height: 10%;
+
     margin-left: 5px;
     margin-right: 5px;
     font-size: medium;
+
 }
 .extraAction {
     height: 20%;

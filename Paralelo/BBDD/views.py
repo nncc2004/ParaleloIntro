@@ -83,7 +83,7 @@ def crear_listas(request):
             autor = request.user
             idUser = autor.id
             curso.autor = idUser
-            curso.save()
+
         return redirect('listas')
     else:
         form = CrearListaForm()
