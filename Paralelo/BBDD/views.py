@@ -26,6 +26,10 @@ def principal(request):
     usuario = request.user
     return render(request, "principal.html", {'usuario': usuario})
 
+def nosotros(request):
+
+    return render(request, "nosotros.html")
+
 def confirmacion(request):
     
     return render(request, 'confirmacion.html')
@@ -79,7 +83,7 @@ def crear_listas(request):
             autor = request.user
             idUser = autor.id
             curso.autor = idUser
-
+            curso.save()
         return redirect('listas')
     else:
         form = CrearListaForm()
