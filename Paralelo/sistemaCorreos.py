@@ -44,15 +44,15 @@ def envioCorreos():
     print(UnMes)
 
     for usuariosDosDias in DosDias:
-        sender_email = "nncc2004@gmail.com"
+        sender_email = "modernizadosusm@gmail.com"
         receiver_email = usuariosDosDias[1]
-        subject = "Prueba Email"
+        subject = "Sigue aprendiendo! - Modernizados"
         body = "Hola " + usuariosDosDias[0] + ". Han pasado dos días desde tu última sesión de estudio!! Conéctate y sigue aprendiendo!"
 
         smtp_server = "smtp.gmail.com"
         smtp_port = 587
-        smtp_username = "nncc2004@gmail.com"
-        smtp_password = "fhkg tpdu zjvh qlxg"
+        smtp_username = "modernizadosusm@gmail.com"
+        smtp_password = "edln pmds qxmf mrwj"
 
         message = MIMEMultipart()
         message["From"] = sender_email
@@ -69,15 +69,15 @@ def envioCorreos():
         print("Email enviado")
 
     for usuarioUnMes in UnMes:
-        sender_email = "nncc2004@gmail.com"
+        sender_email = "modernizadosusm@gmail.com"
         receiver_email = usuarioUnMes[1]
-        subject = "Prueba Email"
+        subject = "Sigue aprendiendo! - Modernizados"
         body = "Hola " + usuarioUnMes[0] + ". Han pasado dos días desde tu última sesión de estudio!! Conéctate y sigue aprendiendo!"
 
         smtp_server = "smtp.gmail.com"
         smtp_port = 587
-        smtp_username = "nncc2004@gmail.com"
-        smtp_password = "fhkg tpdu zjvh qlxg"
+        smtp_username = "modernizadosusm@gmail.com"
+        smtp_password = "edln pmds qxmf mrwj"
 
         message = MIMEMultipart()
         message["From"] = sender_email
@@ -95,7 +95,7 @@ def envioCorreos():
     print("----------------------------------------------------------------------------------------------")
     
 
-schedule.every(10).seconds.do(envioCorreos)
+schedule.every(1).seconds.do(envioCorreos)
 
 while True:
     schedule.run_pending()

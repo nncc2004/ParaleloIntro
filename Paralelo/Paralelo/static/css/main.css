@@ -29,6 +29,7 @@ header{
     position: fixed;
     box-shadow: 0 1px rgba(90, 90, 90, 0.664);
     z-index: 2;
+    box-shadow: 0 0 5px #2C3238;
     
 
 
@@ -69,8 +70,31 @@ nav ul li:hover{
 footer{
     background-color: grey;
     min-height: 5vh;
+    display: flex;
+}
+.Footer{
+
+    width: 50%;
+    text-align: center;
+
+}
+.Footer p {
+    text-align: left;
+    padding-left: 10vh;
+}
+.Footer a {
+    color: #2C3238;
 }
 
+#direccion{
+    font-size: smaller;
+    text-align: center;
+    padding-left: 0;
+}   
+.Footer iframe {
+    align-self: center;
+    box-shadow: 0 0 10px #2C3238;
+}
 /*Cursos y listas*/
 h2{
     margin: 0 10px 0 10px;
