@@ -35,9 +35,9 @@ def envioCorreos():
         anio = int(ultimoLogin[0])
         mes = int(ultimoLogin[1])
         dia = int(ultimoLogin[2])
-        if anio == anioActual and mes == mesActual and dia+2 == diaActual:
+        if anio == anioActual and mes == mesActual and dia+1 == diaActual:
             DosDias.append([usuario.username, usuario.email])
-        elif anio == anioActual and dia == diaActual and mes+1 == mesActual:
+        elif anio == anioActual and dia == diaActual+1 and mes+1 == mesActual:
             UnMes.append([usuario.username, usuario.email])
             
     print(DosDias)
@@ -47,7 +47,7 @@ def envioCorreos():
         sender_email = "modernizadosusm@gmail.com"
         receiver_email = usuariosDosDias[1]
         subject = "Sigue aprendiendo! - Modernizados"
-        body = "Hola " + usuariosDosDias[0] + ". Han pasado dos días desde tu última sesión de estudio!! Conéctate y sigue aprendiendo!"
+        body = "¡Hola " + usuariosDosDias[0] + "!. Han pasado dos días desde tu última sesión de estudio!! Conéctate y sigue aprendiendo!"
 
         smtp_server = "smtp.gmail.com"
         smtp_port = 587
@@ -72,7 +72,7 @@ def envioCorreos():
         sender_email = "modernizadosusm@gmail.com"
         receiver_email = usuarioUnMes[1]
         subject = "Sigue aprendiendo! - Modernizados"
-        body = "Hola " + usuarioUnMes[0] + ". Han pasado dos días desde tu última sesión de estudio!! Conéctate y sigue aprendiendo!"
+        body = "¡Hola " + usuarioUnMes[0] + "!. Ha pasado un mes desde tu última sesión de estudio!! Conéctate y sigue aprendiendo!"
 
         smtp_server = "smtp.gmail.com"
         smtp_port = 587
