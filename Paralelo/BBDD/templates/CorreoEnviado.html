@@ -1,0 +1,12 @@
+{% extends 'index.html'%}
+
+{% block content %}
+<body>
+    <div class="formulario">
+        <h5 class="text-center">El correo se ha enviado correctamente. Si no llega dentro de unos minutos vuelva a intentarlo</h5> 
+        <h5 class="text-center"><a class="btn btn-dark" href="{% url 'password_reset'%}">Reintentar</a></h5>
+        <h5 class="text-center">Recuerde ingresar el correo con el que ha creado la cuenta</h5>
+    </div>
+</body>
+
+{% endblock content %}

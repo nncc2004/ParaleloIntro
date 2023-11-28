@@ -52,7 +52,7 @@ def envioCorreos():
         smtp_server = "smtp.gmail.com"
         smtp_port = 587
         smtp_username = "modernizadosusm@gmail.com"
-        smtp_password = "edln pmds qxmf mrwj"
+        smtp_password = "vmjv mtdf xhgl pzns"
 
         message = MIMEMultipart()
         message["From"] = sender_email
@@ -77,7 +77,7 @@ def envioCorreos():
         smtp_server = "smtp.gmail.com"
         smtp_port = 587
         smtp_username = "modernizadosusm@gmail.com"
-        smtp_password = "edln pmds qxmf mrwj"
+        smtp_password = "vmjv mtdf xhgl pzns"
 
         message = MIMEMultipart()
         message["From"] = sender_email
