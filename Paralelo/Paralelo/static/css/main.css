@@ -70,6 +70,10 @@ nav ul li:hover{
 nav ul li a:hover{
     color: #e8e8e8;
 }
+header img {
+    margin-top: 0.5rem;
+    height: 3rem;
+}
 
 /* footer */
 footer{
@@ -214,13 +218,15 @@ h2{
   border-bottom: 2px solid #D3D8DC;
   outline: 0;
   background: #fff;
-  padding: 20px 0 4px;
   margin: 0 0 20px;
   color: gray;
+  height: 50px;
+  font-size: large;
 }
 .formUsers input:focus {
     border-color: black;
     color: black;
+    font-size: larger;
   }
 .formUsers textarea {
     width: 100%;
@@ -231,6 +237,7 @@ h2{
     padding: 20px 0 4px;
     margin: 0 0 20px;
     color: #777B7E;
+
   }
 .formUsers textarea:focus {
     border-color: #7A9D96;

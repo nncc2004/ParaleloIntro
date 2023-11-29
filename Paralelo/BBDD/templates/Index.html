@@ -8,11 +8,13 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="shortcut icon" href="{% static 'img/Azul 2 sin fondo.png' %}" type="image/x-icon">
 </head>
 <body>
   <header>
     <div class="menu">
-      <!--<img src="logo.png" alt="">-->
+      <a  href="{% url 'principal'%}"><img src="{% static 'img/Azul 2 sin fondo.png' %}" alt=""></a>
+      
       <nav>
           <ul>
             <li><a  href="{% url 'principal'%}">Inicio</a></li>
