@@ -7,7 +7,7 @@
         <form class="formUsers" method="post">
             {% csrf_token %}
             {{form.as_p}}
-            <button  type="submit" id="submit">Login</button>
+            <button  type="submit" class="submit">Login</button>
         </form>
         <h5 class="text-center">¿Olvidó su contraseña? <a class="btn btn-dark" href="{% url 'password_reset'%}">Recuperar contraseña</a></h5>
         <h5 class="text-center">¿No tienes una cuenta? <a class="btn btn-dark" href="{% url 'registro'%}">Regístrate aquí</a></h5>

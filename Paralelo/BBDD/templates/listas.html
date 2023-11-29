@@ -2,86 +2,96 @@
 
 {% block content %}
 <body>
-    <h1>Tus listas de reproducción </h1>
-    <a  class="nlista" href="{% url 'crear_listas'%}">Crea una lista personal</a>
-    
-    <br><hr><br>
+    <br>
+    <div class="listaTitulo">
+            <h1>Tus listas de reproducción </h1>
+            <a  class="nlista" href="{% url 'crear_listas'%}">Crea una lista personal</a>
+    </div>
+
     {%for x in tablaCursos%}
         {%if x.autor == user.id and x.privacidad == True%}
         <div class="Nombre">  
             <div>
                 <h2>{{x.nombre_curso}}</h2>
+                <button class="desplegar btn btn-dark" id="boton{{x}}">Desplegar videos</button>
                 <a class="btn btn-outline-dark" href="{% url 'editar_lista' x.id x.nombre_curso%}">editar lista</a>
             </div>
         </div> 
+        <div class="desplegable" id="div{{x}}">
             <div class="tema"> 
-            {%for j in tablaLista_reproduccion%}
-                {%if j.id_curso == x.id%}
-                    {%for k in tablaVideos%}
-                        {%if k.id == j.id_video%}
-                            <div class="video">
-                                <p class="titulo">{{k.nombre_video}} </p>
-                                <iframe id="frameVideo" src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                <p class="autor">{{k.autor}}</p>
-                                <p class="autor">{{k.tematica}}</p>
-                            </div>
-                        {%endif%}
-                    {%endfor%}
-                {%endif%}
-            {%endfor%}
+                {%for j in tablaLista_reproduccion%}
+                    {%if j.id_curso == x.id%}
+                        {%for k in tablaVideos%}
+                            {%if k.id == j.id_video%}
+                                <div class="video">
+                                    <p class="titulo">{{k.nombre_video}} </p>
+                                    <iframe id="frameVideo" src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <p class="autor">{{k.autor}}</p>
+                                    <p class="autor">{{k.tematica}}</p>
+                                </div>
+                            {%endif%}
+                        {%endfor%}
+                    {%endif%}
+                {%endfor%}
+            </div>
         </div>
         {%endif%}
     {%endfor%}
 
-    <h1>Listas públicas</h1>
-    {%if request.user.is_staff%}
-    <a class="nlista" href="{% url 'crear_listas_publicas'%}">Crea una lista pública</a>
-    <a class="nlista" href="{% url 'crear_recomendacion'%}">Añadir recomendación a una lista pública</a>
-    {%endif%}
-    <br><hr><br>
+
+    <div class="listaTitulo">
+        <h1>Listas públicas</h1>
+        {%if request.user.is_staff%}
+        <a class="nlista" href="{% url 'crear_listas_publicas'%}">Crea una lista pública</a>
+        {%endif%}
+    </div>
+
     {%for x in tablaCursos%}
         {%if x.privacidad == False %}
         <div class="Nombre">  
             <div>
                 <h2>{{x.nombre_curso}}</h2>
+                <button class="desplegar btn btn-dark" id="boton{{x}}">Desplegar videos</button>
                 {%if request.user.is_staff%} <a class="btn btn-outline-dark" href="{% url 'editar_lista' x.id x.nombre_curso%}">editar lista</a> {%endif%}
             </div>
         </div> 
-        <div class="Recomendaciones">
-            {%for recomendacion in tablaRecomendaciones%}
-                {%if recomendacion.lista_central == x.id%}
-                    {%if recomendacion.lista_previa != -1%}
-                            {%for lista in tablaCursos%}
-                                {%if lista.id == recomendacion.lista_previa%}
-                                    <p class="p1">Lista previa recomendada: {{lista.nombre_curso}}</p>
-                                {%endif%}
-                            {%endfor%}
-                    {%endif%}
-                    {%if recomendacion.lista_siguiente != -1%}
-                            {%for lista in tablaCursos%}
-                                {%if lista.id == recomendacion.lista_siguiente%}
-                                    <p class="p2">Lista siguiente recomendada: {{lista.nombre_curso}}</p>
-                                {%endif%}
-                            {%endfor%}
-                    {%endif%}
-                {%endif%}
-            {%endfor%}
-        </div>
-            <div class="tema"> 
-            {%for j in tablaLista_reproduccion%}
-                {%if j.id_curso == x.id%}
-                    {%for k in tablaVideos%}
-                        {%if k.id == j.id_video%}
-                            <div class="video">
-                                <p class="titulo">{{k.nombre_video}} </p>
-                                <iframe id="frameVideo" src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                <p class="autor">{{k.autor}}</p>
-                                <p class="autor">{{k.tematica}}</p>
-                            </div>
+        <div class="desplegable" id="div{{x}}">
+            <div class="Recomendaciones">
+                {%for recomendacion in tablaRecomendaciones%}
+                    {%if recomendacion.lista_central == x.id%}
+                        {%if recomendacion.lista_previa != -1%}
+                                {%for lista in tablaCursos%}
+                                    {%if lista.id == recomendacion.lista_previa%}
+                                        <p class="p1">Lista previa recomendada: {{lista.nombre_curso}}</p>
+                                    {%endif%}
+                                {%endfor%}
                         {%endif%}
-                    {%endfor%}
-                {%endif%}
-            {%endfor%}
+                        {%if recomendacion.lista_siguiente != -1%}
+                                {%for lista in tablaCursos%}
+                                    {%if lista.id == recomendacion.lista_siguiente%}
+                                        <p class="p2">Lista siguiente recomendada: {{lista.nombre_curso}}</p>
+                                    {%endif%}
+                                {%endfor%}
+                        {%endif%}
+                    {%endif%}
+                {%endfor%}
+            </div>
+                <div class="tema"> 
+                {%for j in tablaLista_reproduccion%}
+                    {%if j.id_curso == x.id%}
+                        {%for k in tablaVideos%}
+                            {%if k.id == j.id_video%}
+                                <div class="video">
+                                    <p class="titulo">{{k.nombre_video}} </p>
+                                    <iframe id="frameVideo" src="{{k.url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                    <p class="autor">{{k.autor}}</p>
+                                    <p class="autor">{{k.tematica}}</p>
+                                </div>
+                            {%endif%}
+                        {%endfor%}
+                    {%endif%}
+                {%endfor%}
+            </div>
         </div>
         {%endif%}
     {%endfor%}

@@ -16,6 +16,7 @@ class RegistroDeusuario(UserCreationForm):
         help_texts = {k: "" for k in fields}
 
 class CrearListaForm(forms.ModelForm):
+    nombre_curso = forms.CharField(label="Nombre lista")
     class Meta:
         model = cursos
         fields = ['nombre_curso']

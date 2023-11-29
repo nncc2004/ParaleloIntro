@@ -5,10 +5,13 @@
     z-index: 1;
     
 }
-body {
-    background-color: lightgray;
+html body {
+    background-color: #e8e8e8;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
 }
-
 body p{
     font-size: larger;
     margin-bottom: 0;
@@ -22,12 +25,11 @@ body p{
 /* navbar */
 
 header{
-    background-color: grey;
+    background-color: #798ea7;
     width: 100%;
     display: table;
     font-size: 1.1rem;
     position: fixed;
-    box-shadow: 0 1px rgba(90, 90, 90, 0.664);
     z-index: 2;
     box-shadow: 0 0 5px #2C3238;
     
@@ -62,13 +64,17 @@ nav ul li a {
 } 
 
 nav ul li:hover{
-    background-color: darkgray;
+    background-color: #1f2b44;
     
+}
+nav ul li a:hover{
+    color: #e8e8e8;
 }
 
 /* footer */
 footer{
-    background-color: grey;
+    background-color: #1f2b44;
+    color: #e8e8e8;
     min-height: 5vh;
     display: flex;
 }
@@ -83,7 +89,7 @@ footer{
     padding-left: 10vh;
 }
 .Footer a {
-    color: #2C3238;
+    color: #e8e8e8;
 }
 
 #direccion{
@@ -93,37 +99,43 @@ footer{
 }   
 .Footer iframe {
     align-self: center;
-    box-shadow: 0 0 10px #2C3238;
+    box-shadow: 0 0 10px #48494b88;
 }
 /*Cursos y listas*/
 h2{
     margin: 0 10px 0 10px;
     float: left;
 }
-
+.desplegable{
+    display: none;
+}
 .tema{
-    margin: 0 10px 0 10px;
-    background-color: gray;
+    background-color: #1f2b444d;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     min-height: fit-content;
     margin-bottom: 30px;
+    padding: 10px;
 }
 .video{
-    background-color: darkgrey;
+    background-color: #798ea7;
     width: 98%;
     min-height: 350px;
     height: 40vh;
     margin: 1%;
     text-align: center;
     transition: 0.3s;
+    border-radius: 30px;
 }
 
+
 .video:hover{
-    background-color: lightgray;
+    background-color: #e8e8e8;
     font-weight: bold;
     transform: scale(1.02);
+    box-shadow:  0 0 10px 5px #2C3238;
+    box-shadow:  5px 5px 30px 5px #2c323873;
 }
 
 #frameVideo{
@@ -180,7 +192,15 @@ h2{
     margin-right: 4vw;
 }
 
-/*Forms*/
+.listaTitulo {
+    text-align: center;
+}
+.listaTitulo h1 {
+    margin: 0;
+    padding: 0;
+
+}
+/*Forms diversos*/
 
 .formUsers {
     margin: 0;
@@ -216,7 +236,7 @@ h2{
     border-color: #7A9D96;
     color: #2C3238;
   }
-.formUsers button#submit {
+.formUsers button.submit {
     width: 100%;
     padding: 20px 0;
     text-align: center;
@@ -229,7 +249,7 @@ h2{
     font-size: large;
   }
   
-.formUsers button#submit:hover {
+.formUsers button.submit:hover {
     background-color: black;
     color: white;
   }
@@ -239,7 +259,17 @@ h2{
     margin-left: 25%;
     margin-top: 2vh;    
   }
-
+  .formUsers select{
+    width: 100%;
+    height: 5vh;
+    font-size: large;
+}
+.formUsers select option{
+    text-align: left;
+}
+.formUsers select .vacio{
+    text-align: center;
+}
   /* Confirmación cerrar sesión */
 
 #confirmacion{
@@ -256,3 +286,4 @@ h2{
     width: 49%;
  
 }
+

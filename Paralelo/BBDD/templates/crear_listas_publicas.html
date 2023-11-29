@@ -2,12 +2,15 @@
 
 {% block content %}
 <body>
-    <p>Crear lista pública</p>
-    <form method="post">
+  <div class="formulario">
+    <h1 class="text-center">Crear lista pública</h1>
+    <form class="formUsers" method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="btn btn-outline-dark" type="submit" id="submit">Enviar</button>
       </form>
+  </div>
+    
 </body>
 
 {% endblock content %}

@@ -107,59 +107,46 @@ def crear_listas_publicas(request):
     
     return render(request, "crear_listas_publicas.html", {'form': form})
 
-def crear_recomendiacion(request):
-    tablaCursos = cursos.objects.all()
-    tablaRecomendacion = recomendacion.objects.all()
 
-    if request.method == 'POST':
-        listaCentral = request.POST.get('listaCentral', None)
-        listaSiguiente = request.POST.get('listaSiguiente', None)
-        listaPrevia = request.POST.get('listaPrevia', None)
-        evitar_repeticion =  recomendacion.objects.filter(lista_central=listaCentral).first()
-
-        if evitar_repeticion:
-            evitar_repeticion.lista_previa = listaPrevia
-            evitar_repeticion.lista_siguiente = listaSiguiente
-            evitar_repeticion.save()
-            return redirect('listas')
-    
-        if listaCentral:
-            registro = recomendacion(lista_central= listaCentral, lista_previa = listaPrevia, lista_siguiente = listaSiguiente)
-            registro.save()
-        
-            return redirect('listas')
-    return render(request, "recomendacion.html", {"tablaCursos": tablaCursos, "tablaRecomendacion": tablaRecomendacion})
-
+@login_required(login_url='login')
 def editar_listas(request, idCurso, nombreCurso):
     tablaCursos = cursos.objects.all()
     tablaVideos = videos.objects.all()
     tablaLista_reproduccion = lista_reproduccion.objects.all().order_by('posicion')
+    tablaRecomendacion = recomendacion.objects.all()
     curso = idCurso
     nombre = nombreCurso
 
+    listaEnCuestion = cursos.objects.get(id=curso)
+    if listaEnCuestion.privacidad == False:
+        Flag = False
+    else:
+        Flag = True
+
+
 
     if request.method == 'POST':
-        if 'eliminar_id' in request.POST:
+        identificador = request.POST.get('identificador')
+
+        if identificador == "form3":
             IDeliminacion = request.POST.get('eliminar_id')
             eliminar = lista_reproduccion.objects.get(pk=IDeliminacion)
             eliminar.delete()
-            return render(request, "editar_lista.html",{'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "curso":curso, "nombre":nombre, "i":0})
-        if 'eliminar_id_lista' in request.POST:
+            return render(request, "editar_lista.html",{'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "curso":curso, "nombre":nombre, "Flag": Flag, "tablaRecomendacion": tablaRecomendacion})
+        
+        if identificador == "form2":
             IDeliminacion = request.POST.get('eliminar_id_lista')
             eliminar = cursos.objects.get(pk=IDeliminacion)
             eliminar.delete()
             lista_reproduccion.objects.filter(id_curso=IDeliminacion).delete()
-            return redirect('listas')
-        
-        if 'cambiar_nombre' in request.POST:
+            
+        if identificador == "form1":    
             NuevoNombre = request.POST.get('cambiar_nombre')
             if NuevoNombre:
                 registro = cursos.objects.get(id = curso)
                 registro.nombre_curso = NuevoNombre
                 registro.save()
-                return redirect('listas')
-            
-        if 'cambio_orden' in request.POST:
+        if identificador == "form4":            
             pos1 = request.POST.get('pos1')
             pos2 = request.POST.get('pos2')
             
@@ -172,4 +159,18 @@ def editar_listas(request, idCurso, nombreCurso):
             vid1.save()
             vid2.save()
 
-    return render(request, "editar_lista.html",{'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "curso":curso, "nombre":nombre, "i":0})
+        elif identificador == "form5":
+            listaCentral = curso
+            listaSiguiente = request.POST.get('listaSiguiente', None)
+            listaPrevia = request.POST.get('listaPrevia', None)
+            evitar_repeticion =  recomendacion.objects.filter(lista_central=listaCentral).first()
+
+            if evitar_repeticion:
+                evitar_repeticion.lista_previa = listaPrevia
+                evitar_repeticion.lista_siguiente = listaSiguiente
+                evitar_repeticion.save()
+            else:
+                registro = recomendacion(lista_central= listaCentral, lista_previa = listaPrevia, lista_siguiente = listaSiguiente)
+                registro.save()
+            
+    return render(request, "editar_lista.html",{'tablaVideos': tablaVideos, 'tablaCursos': tablaCursos, 'tablaLista_reproduccion': tablaLista_reproduccion, "curso":curso, "nombre":nombre, "Flag": Flag, "tablaRecomendacion": tablaRecomendacion})

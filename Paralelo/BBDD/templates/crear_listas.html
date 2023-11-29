@@ -2,12 +2,15 @@
 
 {% block content %}
 <body>
-    <p>Crea tu lista:</p>
-    <form method="post">
+  <div class="formulario">
+    <h1 class="text-center">Crea tu lista:</h1>
+    <form method="post" class="formUsers">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="btn btn-outline-dark" type="submit" id="submit">Enviar</button>
       </form>
+  </div>
+    
 </body>
 
 {% endblock content %}

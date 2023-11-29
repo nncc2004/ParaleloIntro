@@ -54,6 +54,28 @@
             });
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+            var botones = document.querySelectorAll('.desplegar');
+
+            botones.forEach(function (boton) {
+                boton.addEventListener('click', function () {
+                    // Obtén el número del botón haciendo coincidir el ID
+                    var nombre = boton.id.replace('boton', '');
+
+                    var divCorrespondiente = document.getElementById('div' + nombre);
+                    if (divCorrespondiente.style.display === 'none' || divCorrespondiente.style.display === '') {
+                        divCorrespondiente.style.display = 'block';
+                    } else {
+                        divCorrespondiente.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+    
+
+    
 </script>
 </div>
 
@@ -66,7 +88,7 @@
   <div class="Footer">
     <h5>Contacto</h5>
     <p><a href="mailto:modernizadosusm@gmail.com">Correo: modernizadosusm@gmail.com</a></p>
-    <p><a href="tel:+56 9 3956 39 29">tel:+56 9 3956 39 29</a></p>
+    <p><a href="tel:+56 9 3956 39 29">tel:+56 9 3956 3929</a></p>
 
   </div>
 </footer>
