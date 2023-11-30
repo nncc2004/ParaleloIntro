@@ -1,9 +1,8 @@
 {% extends 'index.html' %}
-
+{% load static %}
 {% block content %}
 
 <body>
-    <h1>Inicio</h1>
     {%if request.user.is_authenticated%}
     <div>
         <p>Tus datos:</p>
@@ -14,8 +13,17 @@
         </ul>
     </div>
     {%else%}
-    <h2>Inicia sesón para acceder al contenido de la página</h2>
-    <a class="btn btn-outline-dark" href="{% url 'login'%}">Inicia sesión</a>
+    <div id="Unlogged">
+        <h1>MODERNIZADOS</h1>
+        <h3>Capacitando profesionales para la era digital</h3>
+        <h4><a href="{% url 'login'%}">Inicia sesión</a> o <a href="{% url 'registro'%}">Crea un cuenta</a> </h4>
+    </div>
+    
     {%endif%}
 </body>
 {% endblock %}
+<div id="div2Homepage">
+            <img src="{% static 'img/Celeste 2 sin fondo.png' %}" alt="">
+        </div>
+    </div>
+
