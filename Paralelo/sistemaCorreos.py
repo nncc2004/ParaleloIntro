@@ -12,7 +12,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-sys.path.append('Paralelo/')  # Adjust the path to your Django project
+sys.path.append('Paralelo/')  
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Paralelo.settings')
 django.setup()
 

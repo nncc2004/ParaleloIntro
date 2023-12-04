@@ -26,10 +26,6 @@ def principal(request):
     usuario = request.user
     return render(request, "principal.html", {'usuario': usuario})
 
-def nosotros(request):
-
-    return render(request, "nosotros.html")
-
 def confirmacion(request):
     
     return render(request, 'confirmacion.html')

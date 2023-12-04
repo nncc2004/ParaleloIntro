@@ -34,13 +34,6 @@
     </div>
   </header>
   <div id="infoPag">
-  {% if messages %}
-    {% for message in messages%}
-      <div class="notification message.tags">
-        {{message}}
-      </div>
-    {%endfor%}
-  {%endif%}
   {% block content %}
 
   {% endblock content %}
@@ -78,7 +71,6 @@
 
             botones.forEach(function (boton) {
                 boton.addEventListener('click', function () {
-                    // Obtén el número del botón haciendo coincidir el ID
                     var nombre = boton.id.replace('boton', '');
 
                     var divCorrespondiente = document.getElementById('div' + nombre);
