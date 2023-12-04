@@ -4,13 +4,11 @@
 
 <body>
     {%if request.user.is_authenticated%}
-    <div>
-        <p>Tus datos:</p>
-        <ul>
-            <li>Usuario: {{usuario.username}}</li>
-            <li>Nombre: {{usuario.first_name}}</li>
-            <li>Apellido: {{usuario.last_name}}</li>
-        </ul>
+    <div id="Logged">
+        <h1>MODERNIZADOS</h1>
+        <h3>Capacitando profesionales para la era digital</h3>
+        <h4>¡Bienvenid@! {{usuario.username}}</h4>
+        <h4>Revisa nuestros <a href="{% url 'cursos'%}">cursos disponibles</a> o ve tus <a href="{% url 'listas'%}">listas de reproducción</a> </h4>
     </div>
     {%else%}
     <div id="Unlogged">

@@ -139,7 +139,7 @@ def editar_listas(request, idCurso, nombreCurso):
             eliminar = cursos.objects.get(pk=IDeliminacion)
             eliminar.delete()
             lista_reproduccion.objects.filter(id_curso=IDeliminacion).delete()
-            
+            return redirect('listas')
         if identificador == "form1":    
             NuevoNombre = request.POST.get('cambiar_nombre')
             if NuevoNombre:

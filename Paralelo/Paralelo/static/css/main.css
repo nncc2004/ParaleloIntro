@@ -165,8 +165,7 @@ h2{
 .nlista{
     font-size:x-large;
     color: black;
-    padding-right: 50px;
-    padding-left: 10px;
+
 }
 
 .Nombre{
@@ -329,6 +328,45 @@ h2{
     font-style: italic;
 }
 #Unlogged h4 a:hover{
+    color: #1f2b44;
+}
+
+
+#Logged h1{
+    font-size: 4rem;
+    font-weight: 300;
+    font-style: italic;
+    color: #1f2b44;
+    text-align: center;
+    margin: 0;
+    margin-top: 2vh;
+
+    
+}
+
+#Logged h3{
+    font-size: 1.2rem;
+    color:#798ea7;
+    text-align: center;
+    margin: 0;
+}
+#Logged h4{
+    font-size: 1.8rem;
+    font-weight: bolder;
+    color:#798ea7;
+    text-align: center;
+    
+}
+#Logged h4:first-of-type{
+    margin-top: 50px;
+    margin-top: 10vh;
+    font-size: 4rem;
+}
+#Logged h4 a {
+    color:#798ea7 ;
+    font-style: italic;
+}
+#Logged h4 a:hover{
     color: #1f2b44;
 }
 
