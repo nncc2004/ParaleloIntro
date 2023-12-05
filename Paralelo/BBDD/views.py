@@ -142,6 +142,7 @@ def editar_listas(request, idCurso, nombreCurso):
                 registro = cursos.objects.get(id = curso)
                 registro.nombre_curso = NuevoNombre
                 registro.save()
+            return redirect('listas')
         if identificador == "form4":            
             pos1 = request.POST.get('pos1')
             pos2 = request.POST.get('pos2')

@@ -35,13 +35,14 @@ def envioCorreos():
         anio = int(ultimoLogin[0])
         mes = int(ultimoLogin[1])
         dia = int(ultimoLogin[2])
-        if anio == anioActual and mes == mesActual and dia+1 == diaActual:
-            DosDias.append([usuario.username, usuario.email])
-        elif anio == anioActual and dia == diaActual+1 and mes+1 == mesActual:
-            UnMes.append([usuario.username, usuario.email])
+        if anio == anioActual and mes == mesActual and dia+2 == diaActual:
+            DosDias.append([usuario.username, usuario.email, anio, mes, dia])
+        elif anio == anioActual and dia == diaActual and mes+1 == mesActual:
+            UnMes.append([usuario.username, usuario.email, anio, mes, dia])
             
     print(DosDias)
     print(UnMes)
+    print(diaActual)
 
     for usuariosDosDias in DosDias:
         sender_email = "modernizadosusm@gmail.com"
